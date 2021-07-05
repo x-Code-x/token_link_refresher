@@ -48,7 +48,7 @@ function App() {
   ];
 
   useEffect(() => {
-    if (currentIndex === links.length) {
+    if (currentIndex === links.length - 1) {
       setCurrentIndex(0);
     }
   }, [links, currentIndex]);
@@ -81,6 +81,7 @@ function App() {
     //     let arrayOfText = text.split('\r');
     //     arrayOfText = arrayOfText.slice(0, arrayOfText.length - 1);
     //   });
+    console.log(websiteLinks);
     setLinks(websiteLinks);
     setCurrentLink(websiteLinks[0]);
   }, []);
