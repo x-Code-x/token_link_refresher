@@ -1,0 +1,209 @@
+@import './scss/variable.scss';
+@import './scss/mixin.scss';
+
+.homepage {
+  &__div {
+    min-height: 50rem;
+    padding-bottom: 10rem;
+  }
+
+  &__container {
+    position: relative;
+  }
+  &__banner {
+    background: #052839;
+    width: 100%;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+    &-btn {
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      font-size: 15px !important;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__listlink {
+    transition: all 0.5s ease;
+    padding-left: 1rem;
+
+    &-text {
+      color: rgba(255, 255, 255, 0.741) !important;
+    }
+    &-title {
+      &-div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    &-icon {
+      &-div {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    &-iconbtndiv {
+      display: flex;
+    }
+  }
+
+  &__spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__iframe {
+    width: 80vw;
+    height: 90vh;
+    @include glassMorph(rgba(0, 0, 0, 0.111), 10px, rgba(0, 0, 0, 0.165), 2rem);
+    &-link {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: calc(100% - 13rem);
+    }
+    &-innerdiv {
+      position: relative;
+      opacity: 0;
+    }
+    &-outerdiv {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    &-close {
+      display: flex;
+      align-items: center;
+      padding-left: 2rem;
+      color: white;
+      position: relative;
+      width: 100%;
+      justify-content: space-between;
+      &-innerdiv {
+        position: absolute;
+        width: 100%;
+      }
+      @include glassMorph(rgba(0, 0, 0, 0.33), 20px, rgba(145, 15, 177, 0.166), 2rem 2rem 0 0);
+
+      height: 5rem;
+      border-bottom: 1px solid white;
+      width: 100%;
+      z-index: 3;
+
+      &-icon {
+        // position: absolute;
+        // right: 1rem;
+        // top: 50%;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        // transform: translateY(-50%);
+        cursor: pointer;
+        &:hover {
+          color: rgb(201, 198, 198);
+        }
+        color: white;
+      }
+    }
+  }
+
+  &__button {
+    font-size: 1.5rem !important;
+    background: transparent !important;
+    border: 1px solid white !important;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+
+    &-image {
+      width: 25vw;
+
+      &-outerdiv {
+        padding: 2rem;
+        @include glassMorph(rgba(0, 0, 0, 0.111), 10px, rgba(0, 0, 0, 0.165), 2rem);
+        @include shadow-func(0.5rem, 0.3rem, 1rem, 0.1rem, rgba(255, 255, 255, 0.522));
+      }
+    }
+
+    &-h3 {
+      margin-top: 2rem;
+      color: white;
+      font-size: 35px;
+      font-family: $font-pragati;
+    }
+  }
+
+  &__content {
+    margin-top: 3rem;
+    color: white;
+    padding: 3rem 4rem;
+    @include glassMorph(rgba(0, 0, 0, 0.111), 10px, rgba(0, 0, 0, 0.165), 2rem);
+    @include shadow-func(0.5rem, 0.3rem, 1rem, 0.1rem, rgba(255, 255, 255, 0.522));
+  }
+
+  &__footer {
+    background: #052839;
+    padding: 10rem 0;
+    display: grid;
+    place-items: center;
+    position: relative;
+    &-icon {
+      // font-size: 5px !important;
+      height: 4rem;
+      width: 4rem;
+      &-outerdiv {
+        display: flex;
+        margin-top: 2rem;
+      }
+
+      &-div {
+        cursor: pointer;
+        padding: 1rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        transition: all 0.5s ease;
+        &:hover {
+          background: rgb(49, 82, 153);
+        }
+      }
+    }
+
+    &-copyright {
+      color: white;
+      position: absolute;
+      bottom: 1rem;
+    }
+  }
+}
+
+.custom__scrollbar::-webkit-scrollbar {
+  width: 4px !important ;
+  height: 4px !important ;
+}
+.custom__scrollbar::-webkit-scrollbar-thumb {
+  background: #6c8391 !important ;
+  border-radius: 5px !important ;
+}
+.custom__scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #93a7c0 !important ;
+}
+.custom__scrollbar::-webkit-scrollbar-track {
+  background: #2f373c !important;
+}
