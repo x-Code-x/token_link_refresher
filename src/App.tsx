@@ -105,10 +105,6 @@ function App() {
 
   // translation
   const { t, i18n } = useTranslation(['translation', 'homepage']);
-  const changeLanguage = (code: string) => {
-    console.log(i18n);
-    i18n.changeLanguage(code);
-  };
 
   return (
     <>
@@ -144,10 +140,10 @@ function App() {
               className="homepage__banner-btn"
               onClick={() => {
                 if (currentLanguage === 'en') {
-                  changeLanguage('zh');
+                  i18n.changeLanguage('zh');
                   setCurrentLanguage('zh');
                 } else {
-                  changeLanguage('en');
+                  i18n.changeLanguage('en');
                   setCurrentLanguage('en');
                 }
               }}
