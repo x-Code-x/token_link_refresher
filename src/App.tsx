@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.scss';
 import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
-// @ts-ignore: Unreachable code error
-import file from './links.txt';
+import { websiteLinks } from './links';
 import { Button, Container } from 'react-bootstrap';
 
 function App() {
@@ -76,14 +75,14 @@ function App() {
     // };
     // reader.readAsText(e.target.files[0])
 
-    fetch(file)
-      .then((r) => r.text())
-      .then((text) => {
-        let arrayOfText = text.split('\r');
-        arrayOfText = arrayOfText.slice(0, arrayOfText.length - 1);
-        setLinks(arrayOfText);
-        setCurrentLink(arrayOfText[0]);
-      });
+    // fetch(file)
+    //   .then((r) => r.text())
+    //   .then((text) => {
+    //     let arrayOfText = text.split('\r');
+    //     arrayOfText = arrayOfText.slice(0, arrayOfText.length - 1);
+    //   });
+    setLinks(websiteLinks);
+    setCurrentLink(websiteLinks[0]);
   }, []);
 
   useEffect(() => {
@@ -137,98 +136,101 @@ function App() {
         </div>
       </div>
       <div className="App">
-        <section className="homepage__banner">
-          <h2> {t('homepage:contract', 'Contract Address')}: 0xc7d43f2b51f44f09fbb8a691a0451e8ffcf36c0a</h2>
-          <Button
-            variant="secondary"
-            className="homepage__banner-btn"
-            onClick={() => {
-              if (currentLanguage === 'en') {
-                changeLanguage('zh');
-                setCurrentLanguage('zh');
-              } else {
-                changeLanguage('en');
-                setCurrentLanguage('en');
-              }
-            }}
-          >
-            {t('translation:language', '中文')}
-          </Button>
-        </section>
+        <div>
+          <section className="homepage__banner">
+            <h2> {t('homepage:contract', 'Contract Address')}: 0xc7d43f2b51f44f09fbb8a691a0451e8ffcf36c0a</h2>
+            <Button
+              variant="secondary"
+              className="homepage__banner-btn"
+              onClick={() => {
+                if (currentLanguage === 'en') {
+                  changeLanguage('zh');
+                  setCurrentLanguage('zh');
+                } else {
+                  changeLanguage('en');
+                  setCurrentLanguage('en');
+                }
+              }}
+            >
+              {t('translation:language', '中文')}
+            </Button>
+          </section>
 
-        <Container className="homepage__container">
-          {/* <div className="homepage__iframe-outerdiv">
+          <Container className="homepage__container">
+            {/* <div className="homepage__iframe-outerdiv">
             <div className="homepage__iframe-innerdiv">
               <iframe className="homepage__iframe" src={currentLink} title={currentLink}></iframe>
             </div>
           </div> */}
-          <section className="homepage__div">
-            <section className="homepage__title">
-              <div className="homepage__title-image-outerdiv">
-                <img
-                  className="homepage__title-image"
-                  alt="title"
-                  src="https://risereward.com/images/Logo_EverRise_light-1280x270.png"
-                />
-              </div>
-              <h3 className="homepage__title-h3"> {t('homepage:title', 'Auto Links Refresher')}</h3>
-            </section>
-
-            <section className="homepage__content">
-              <div className="homepage__listlink-title-div">
-                <h3>{t('homepage:linkTitle', 'List of links')}:</h3>
-                <div className="homepage__listlink-icon-div">
-                  <i className="fas fa-redo-alt homepage__listlink-icon"></i>
-                  <div style={{ marginLeft: '0.5rem' }}>{seconds}</div>
-                </div>
-              </div>
-              <div>
-                <ol>
-                  {links.map((child, index) => (
-                    <li
-                      className={`homepage__listlink`}
-                      key={`link${index}`}
-                      style={{ background: index === currentIndex ? 'rgba(255, 255, 255, 0.1)' : 'transparent' }}
-                    >
-                      <a href={child} rel="noreferrer" target="_blank" className="homepage__listlink-text">
-                        {child}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-              <Button variant="secondary" className="homepage__button" onClick={() => setShowIframe(!showIframe)}>
-                {t('homepage:action', 'View Action')}
-              </Button>
-            </section>
-          </section>
-        </Container>
-
-        <footer className="homepage__footer">
-          <img
-            className="homepage__title-image"
-            alt="title"
-            src="https://risereward.com/images/Logo_EverRise_light-1280x270.png"
-          />
-          <div className="homepage__footer-icon-outerdiv">
-            {icons.map((child, index) => (
-              <a key={index} href={child.url} rel="noreferrer" target="_blank">
-                <div className="homepage__footer-icon-div">
+            <section className="homepage__div">
+              <section className="homepage__title">
+                <div className="homepage__title-image-outerdiv">
                   <img
-                    loading="lazy"
-                    src={child.imgSrc}
-                    alt={child.title}
-                    title={child.title}
-                    className="homepage__footer-icon"
+                    className="homepage__title-image"
+                    alt="title"
+                    src="https://risereward.com/images/Logo_EverRise_light-1280x270.png"
                   />
                 </div>
-              </a>
-            ))}
-          </div>
-          <div className="homepage__footer-copyright">
-            {t('homepage:copyright', 'Copyright')} © 2021 | {t('homepage:footer', 'Developed by Community Volunteer')}
-          </div>
-        </footer>
+                <h3 className="homepage__title-h3"> {t('homepage:title', 'Auto Links Refresher')}</h3>
+              </section>
+
+              <section className="homepage__content">
+                <div className="homepage__listlink-title-div">
+                  <h3>{t('homepage:linkTitle', 'List of links')}:</h3>
+                  <div className="homepage__listlink-icon-div">
+                    <i className="fas fa-redo-alt homepage__listlink-icon"></i>
+                    <div style={{ marginLeft: '0.5rem' }}>{seconds}</div>
+                  </div>
+                </div>
+                <div>
+                  <ol>
+                    {links.map((child, index) => (
+                      <li
+                        className={`homepage__listlink`}
+                        key={`link${index}`}
+                        style={{ background: index === currentIndex ? 'rgba(255, 255, 255, 0.1)' : 'transparent' }}
+                      >
+                        <a href={child} rel="noreferrer" target="_blank" className="homepage__listlink-text">
+                          {child}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <Button variant="secondary" className="homepage__button" onClick={() => setShowIframe(!showIframe)}>
+                  {t('homepage:action', 'View Action')}
+                </Button>
+              </section>
+            </section>
+          </Container>
+        </div>
+        <div>
+          <footer className="homepage__footer">
+            <img
+              className="homepage__title-image"
+              alt="title"
+              src="https://risereward.com/images/Logo_EverRise_light-1280x270.png"
+            />
+            <div className="homepage__footer-icon-outerdiv">
+              {icons.map((child, index) => (
+                <a key={index} href={child.url} rel="noreferrer" target="_blank">
+                  <div className="homepage__footer-icon-div">
+                    <img
+                      loading="lazy"
+                      src={child.imgSrc}
+                      alt={child.title}
+                      title={child.title}
+                      className="homepage__footer-icon"
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+            <div className="homepage__footer-copyright">
+              {t('homepage:copyright', 'Copyright')} © 2021 | {t('homepage:footer', 'Developed by Community Volunteer')}
+            </div>
+          </footer>
+        </div>
       </div>
     </>
   );
