@@ -8,5 +8,6 @@
   "close": "关闭",
   "link": "链接",
   "loop": "开始循环",
-  "stopLoop": "停止循环"
+  "stopLoop": "停止循环",
+  "popup": "请确保允许弹出式窗口 *"
 }

@@ -14,7 +14,7 @@ function App() {
   const [seconds, setSeconds] = useState(10);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentLanguage, setCurrentLanguage] = useState('en');
-  // const [startLoop, setStartLoop] = useState(false);
+  const [startLoop, setStartLoop] = useState(false);
 
   const icons = [
     {
@@ -56,29 +56,42 @@ function App() {
       // setCurrentLink(links[0]);
       linkRef.current = links[0];
       if (newWindowRef.current) {
-        newWindowRef.current.location.replace(links[currentIndex + 1]);
+        // newWindowRef.current.close();
+        // newWindowRef.current.location.replace(links[currentIndex + 1]);
+
+        if (startLoop) {
+          newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
+        }
       }
     }
-  }, [links, currentIndex]);
+  }, [links, startLoop, currentIndex]);
 
   useEffect(() => {
-    // if (startLoop) {
-    if (seconds >= 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000);
+    if (startLoop) {
+      if (seconds >= 0) {
+        setTimeout(() => setSeconds(seconds - 1), 1000);
+      } else {
+        // when time is up, move on to the next index
+        // then start the count down again
+        setCurrentIndex(currentIndex + 1);
+        linkRef.current = links[currentIndex + 1];
+        // setCurrentLink(links[currentIndex + 1]);
+        setSeconds(10);
+        if (newWindowRef.current) {
+          // newWindowRef.current.close();
+          newWindowRef.current = window.open(links[currentIndex + 1], 'top', 'width=200, height=100, screenY=200');
+        }
+
+        // newWindowRef.current.location.replace(links[currentIndex + 1]);
+      }
     } else {
-      // when time is up, move on to the next index
-      // then start the count down again
-      setCurrentIndex(currentIndex + 1);
-      linkRef.current = links[currentIndex + 1];
-      // setCurrentLink(links[currentIndex + 1]);
       setSeconds(10);
-      newWindowRef.current.location.replace(links[currentIndex + 1]);
+      setCurrentIndex(0);
+      // if (newWindowRef.current) {
+      //   newWindowRef.current.close();
+      // }
     }
-    // } else {
-    //   setSeconds(10);
-    //   setCurrentIndex(0);
-    // }
-  }, [seconds, links, currentIndex]);
+  }, [seconds, links, startLoop, currentIndex]);
 
   useEffect(() => {
     // const [text, setText) = React.useState();
@@ -98,21 +111,22 @@ function App() {
     //   });
     setLinks(websiteLinks);
     linkRef.current = websiteLinks[0];
-    // if (startLoop) {
-    setCurrentIndex(0);
-    // setCurrentLink(websiteLinks[0]);
-    newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
-    // }
-  }, []);
 
-  // useEffect(() => {
-  //   if (!startLoop) {
-  //     if (newWindowRef.current) {
-  //       newWindowRef.current.close();
-  //     }
-  //     setStartLoop(false);
-  //   }
-  // }, [startLoop]);
+    if (startLoop) {
+      setCurrentIndex(0);
+      // setCurrentLink(websiteLinks[0]);
+      newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
+    }
+  }, [startLoop]);
+
+  useEffect(() => {
+    if (!startLoop) {
+      if (newWindowRef.current) {
+        newWindowRef.current.close();
+      }
+      setStartLoop(false);
+    }
+  }, [startLoop]);
 
   // useEffect(() => {
   //   if (showIframe) {
@@ -230,20 +244,25 @@ function App() {
                         key={`link${index}`}
                         style={{ background: index === currentIndex ? 'rgba(255, 255, 255, 0.1)' : 'transparent' }}
                       >
-                        <a href={child} rel="noreferrer" target="_blank" className="homepage__listlink-text">
-                          {child}
-                        </a>
+                        <div className="homepage__listlink-text-div">
+                          <a href={child} rel="noreferrer" target="_blank" className="homepage__listlink-text">
+                            {child}
+                          </a>
+                        </div>
                       </li>
                     ))}
                   </ol>
                 </div>
-                {/* <Button className="homepage__button" onClick={() => setStartLoop(!startLoop)}>
-                  {!startLoop ? (
-                    <>{t('homepage:loop', 'Start Looping')}</>
-                  ) : (
-                    <>{t('homepage:stopLoop', 'Stop Looping')}</>
-                  )}
-                </Button> */}
+                <div className="homepage__popup">
+                  <span>{t('homepage:popup', 'Please make sure to allow pop up windows')}</span>
+                  <Button className="homepage__button" onClick={() => setStartLoop(!startLoop)}>
+                    {!startLoop ? (
+                      <>{t('homepage:loop', 'Start Looping')}</>
+                    ) : (
+                      <>{t('homepage:stopLoop', 'Stop Looping')}</>
+                    )}
+                  </Button>
+                </div>
               </section>
             </section>
           </Container>

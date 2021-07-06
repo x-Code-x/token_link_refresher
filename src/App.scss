@@ -14,11 +14,21 @@
     padding-bottom: 10rem;
   }
 
+  &__popup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & > span {
+      font-family: $font-firesans;
+      color: rgb(255, 255, 255);
+    }
+  }
   &__container {
     position: relative;
   }
   &__banner {
     background: #052839;
+    font-family: $font-firesans;
     width: 100%;
     color: white;
     font-size: 12px;
@@ -71,6 +81,11 @@
 
     &-text {
       color: rgba(255, 255, 255, 0.741) !important;
+      &-div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
     &-title {
       &-div {
@@ -161,7 +176,8 @@
     font-size: 1.5rem !important;
     background: transparent !important;
     border: 1px solid white !important;
-    margin-left: auto;
+    margin-left: 1rem;
+    white-space: nowrap;
   }
 
   &__title {
