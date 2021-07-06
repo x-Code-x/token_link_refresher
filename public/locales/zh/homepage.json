@@ -6,5 +6,7 @@
   "linkTitle": "链接列表",
   "action": "查看操作",
   "close": "关闭",
-  "link": "链接"
+  "link": "链接",
+  "loop": "开始循环",
+  "stopLoop": "停止循环"
 }

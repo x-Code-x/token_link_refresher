@@ -6,5 +6,7 @@
   "linkTitle": "List of links",
   "action": "View Action",
   "close": "Close",
-  "link": "Link"
+  "link": "Link",
+  "loop": "Start Looping",
+  "stopLoop": "Stop Looping"
 }

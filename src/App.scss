@@ -36,6 +36,8 @@
       position: absolute;
       right: 2rem;
       top: 50%;
+      background: transparent !important;
+      border: 1px solid white !important;
       font-size: 15px !important;
       transform: translateY(-50%);
 
@@ -45,6 +47,8 @@
 
       &--mobile {
         position: static;
+        background: transparent !important;
+        border: 1px solid white !important;
         @include respond-to($small-phone) {
           font-size: 15px !important;
           display: block !important;
@@ -153,9 +157,11 @@
   }
 
   &__button {
+    display: block !important;
     font-size: 1.5rem !important;
     background: transparent !important;
     border: 1px solid white !important;
+    margin-left: auto;
   }
 
   &__title {
