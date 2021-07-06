@@ -50,6 +50,7 @@ function App() {
   useEffect(() => {
     if (currentIndex === links.length) {
       setCurrentIndex(0);
+      setCurrentLink(links[0]);
     }
   }, [links, currentIndex]);
 
