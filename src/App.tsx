@@ -48,7 +48,7 @@ function App() {
   ];
 
   useEffect(() => {
-    if (currentIndex === links.length - 1) {
+    if (currentIndex === links.length) {
       setCurrentIndex(0);
     }
   }, [links, currentIndex]);
@@ -63,6 +63,8 @@ function App() {
       setCurrentLink(links[currentIndex + 1]);
       setSeconds(10);
     }
+
+    console.log('current Index', currentIndex);
   }, [seconds, links, currentIndex]);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ function App() {
     //     let arrayOfText = text.split('\r');
     //     arrayOfText = arrayOfText.slice(0, arrayOfText.length - 1);
     //   });
-    console.log(websiteLinks);
+    setCurrentIndex(0);
     setLinks(websiteLinks);
     setCurrentLink(websiteLinks[0]);
   }, []);
