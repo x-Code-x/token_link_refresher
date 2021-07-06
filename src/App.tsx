@@ -110,13 +110,18 @@ function App() {
     }
   }, [startLoop]);
 
+  if (newWindowRef.current) {
+    newWindowRef.current.onunload = (e: any) => console.log(e);
+  }
+
   useEffect(() => {
-    newWindowRef.current.addEventListener('beforeunload', function (e: any) {
-      // Cancel the event
-      e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-      // Chrome requires returnValue to be set
-      e.returnValue = '';
-    });
+    // newWindowRef.current.addEventListener('unload', function (e: any) {
+    //   // Cancel the event
+    //   // e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+    //   // // Chrome requires returnValue to be set
+    //   // e.returnValue = '';
+    //   console.log(e);
+    // });
   }, []);
   // useEffect(() => {
   //   if (showIframe) {
