@@ -14,7 +14,7 @@ function App() {
   const [seconds, setSeconds] = useState(10);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentLanguage, setCurrentLanguage] = useState('en');
-  const [startLoop, setStartLoop] = useState(false);
+  // const [startLoop, setStartLoop] = useState(false);
 
   const icons = [
     {
@@ -55,28 +55,30 @@ function App() {
       setCurrentIndex(0);
       // setCurrentLink(links[0]);
       linkRef.current = links[0];
-      newWindowRef.current = window.open(links[0], 'top', 'width=200, height=100');
+      if (newWindowRef.current) {
+        newWindowRef.current.location.replace(links[currentIndex + 1]);
+      }
     }
   }, [links, currentIndex]);
 
   useEffect(() => {
-    if (startLoop) {
-      if (seconds >= 0) {
-        setTimeout(() => setSeconds(seconds - 1), 1000);
-      } else {
-        // when time is up, move on to the next index
-        // then start the count down again
-        setCurrentIndex(currentIndex + 1);
-        linkRef.current = links[currentIndex + 1];
-        // setCurrentLink(links[currentIndex + 1]);
-        setSeconds(10);
-        newWindowRef.current.location.replace(links[currentIndex + 1]);
-      }
+    // if (startLoop) {
+    if (seconds >= 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
     } else {
+      // when time is up, move on to the next index
+      // then start the count down again
+      setCurrentIndex(currentIndex + 1);
+      linkRef.current = links[currentIndex + 1];
+      // setCurrentLink(links[currentIndex + 1]);
       setSeconds(10);
-      setCurrentIndex(0);
+      newWindowRef.current.location.replace(links[currentIndex + 1]);
     }
-  }, [seconds, links, startLoop, currentIndex]);
+    // } else {
+    //   setSeconds(10);
+    //   setCurrentIndex(0);
+    // }
+  }, [seconds, links, currentIndex]);
 
   useEffect(() => {
     // const [text, setText) = React.useState();
@@ -96,33 +98,22 @@ function App() {
     //   });
     setLinks(websiteLinks);
     linkRef.current = websiteLinks[0];
-    if (startLoop) {
-      setCurrentIndex(0);
-      // setCurrentLink(websiteLinks[0]);
-      newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
-    }
-  }, [startLoop]);
-
-  useEffect(() => {
-    if (!startLoop) {
-      newWindowRef.current.close();
-      setStartLoop(false);
-    }
-  }, [startLoop]);
-
-  if (newWindowRef.current) {
-    newWindowRef.current.onunload = (e: any) => console.log(e);
-  }
-
-  useEffect(() => {
-    // newWindowRef.current.addEventListener('unload', function (e: any) {
-    //   // Cancel the event
-    //   // e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-    //   // // Chrome requires returnValue to be set
-    //   // e.returnValue = '';
-    //   console.log(e);
-    // });
+    // if (startLoop) {
+    setCurrentIndex(0);
+    // setCurrentLink(websiteLinks[0]);
+    newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
+    // }
   }, []);
+
+  // useEffect(() => {
+  //   if (!startLoop) {
+  //     if (newWindowRef.current) {
+  //       newWindowRef.current.close();
+  //     }
+  //     setStartLoop(false);
+  //   }
+  // }, [startLoop]);
+
   // useEffect(() => {
   //   if (showIframe) {
   //     gsap.to('.homepage__iframe', { opacity: 1, width: '80vw', height: '90vh' });
@@ -246,13 +237,13 @@ function App() {
                     ))}
                   </ol>
                 </div>
-                <Button className="homepage__button" onClick={() => setStartLoop(!startLoop)}>
+                {/* <Button className="homepage__button" onClick={() => setStartLoop(!startLoop)}>
                   {!startLoop ? (
                     <>{t('homepage:loop', 'Start Looping')}</>
                   ) : (
                     <>{t('homepage:stopLoop', 'Stop Looping')}</>
                   )}
-                </Button>
+                </Button> */}
               </section>
             </section>
           </Container>
