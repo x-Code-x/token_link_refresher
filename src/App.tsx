@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.scss';
 import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
@@ -6,9 +6,11 @@ import { websiteLinks } from './links';
 import { Button, Container } from 'react-bootstrap';
 
 function App() {
-  const [showIframe, setShowIframe] = useState(false);
+  const linkRef = useRef<any>(null);
+  const newWindowRef = useRef<any>(null);
+  // const [showIframe, setShowIframe] = useState(false);
   const [links, setLinks] = useState<string[]>([]);
-  const [currentLink, setCurrentLink] = useState('');
+  // const [currentLink, setCurrentLink] = useState('');
   const [seconds, setSeconds] = useState(10);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentLanguage, setCurrentLanguage] = useState('en');
@@ -50,7 +52,9 @@ function App() {
   useEffect(() => {
     if (currentIndex === links.length) {
       setCurrentIndex(0);
-      setCurrentLink(links[0]);
+      // setCurrentLink(links[0]);
+      linkRef.current = links[0];
+      newWindowRef.current = window.open(links[0], 'top', 'width=200, height=100');
     }
   }, [links, currentIndex]);
 
@@ -61,11 +65,11 @@ function App() {
       // when time is up, move on to the next index
       // then start the count down again
       setCurrentIndex(currentIndex + 1);
-      setCurrentLink(links[currentIndex + 1]);
+      linkRef.current = links[currentIndex + 1];
+      // setCurrentLink(links[currentIndex + 1]);
       setSeconds(10);
+      newWindowRef.current.location.replace(links[currentIndex + 1]);
     }
-
-    console.log('current Index', currentIndex);
   }, [seconds, links, currentIndex]);
 
   useEffect(() => {
@@ -86,18 +90,20 @@ function App() {
     //   });
     setCurrentIndex(0);
     setLinks(websiteLinks);
-    setCurrentLink(websiteLinks[0]);
+    linkRef.current = websiteLinks[0];
+    // setCurrentLink(websiteLinks[0]);
+    newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100');
   }, []);
 
-  useEffect(() => {
-    if (showIframe) {
-      gsap.to('.homepage__iframe', { opacity: 1, width: '80vw', height: '90vh' });
-      gsap.to('.homepage__iframe-innerdiv', { opacity: 1 });
-    } else {
-      gsap.to('.homepage__iframe', { opacity: 0, width: 0, height: 0 });
-      gsap.to('.homepage__iframe-innerdiv', { opacity: 0 });
-    }
-  }, [showIframe]);
+  // useEffect(() => {
+  //   if (showIframe) {
+  //     gsap.to('.homepage__iframe', { opacity: 1, width: '80vw', height: '90vh' });
+  //     gsap.to('.homepage__iframe-innerdiv', { opacity: 1 });
+  //   } else {
+  //     gsap.to('.homepage__iframe', { opacity: 0, width: 0, height: 0 });
+  //     gsap.to('.homepage__iframe-innerdiv', { opacity: 0 });
+  //   }
+  // }, [showIframe]);
 
   useEffect(() => {
     if (seconds === 0) {
@@ -112,7 +118,7 @@ function App() {
 
   return (
     <>
-      <div className="homepage__iframe-outerdiv">
+      {/* <div className="homepage__iframe-outerdiv">
         <div className="homepage__iframe-innerdiv">
           <div className="homepage__iframe-close-innerdiv">
             <div className="homepage__iframe-close">
@@ -134,7 +140,7 @@ function App() {
           </div>
           <iframe className="homepage__iframe" src={currentLink} title={currentLink}></iframe>
         </div>
-      </div>
+      </div> */}
       <div className="App">
         <div>
           <section className="homepage__banner">
@@ -155,6 +161,21 @@ function App() {
               {t('translation:language', '中文')}
             </Button>
           </section>
+          <Button
+            variant="secondary"
+            className="homepage__banner-btn--mobile"
+            onClick={() => {
+              if (currentLanguage === 'en') {
+                i18n.changeLanguage('zh');
+                setCurrentLanguage('zh');
+              } else {
+                i18n.changeLanguage('en');
+                setCurrentLanguage('en');
+              }
+            }}
+          >
+            {t('translation:language', '中文')}
+          </Button>
 
           <Container className="homepage__container">
             {/* <div className="homepage__iframe-outerdiv">
@@ -197,13 +218,11 @@ function App() {
                     ))}
                   </ol>
                 </div>
-                <Button variant="secondary" className="homepage__button" onClick={() => setShowIframe(!showIframe)}>
-                  {t('homepage:action', 'View Action')}
-                </Button>
               </section>
             </section>
           </Container>
         </div>
+
         <div>
           <footer className="homepage__footer">
             <img

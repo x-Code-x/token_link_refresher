@@ -25,18 +25,45 @@
     text-align: center;
     padding: 2rem 0;
     position: relative;
+
+    @include respond-to($small-phone) {
+      & > h2 {
+        font-size: 1.5rem;
+      }
+    }
+
     &-btn {
       position: absolute;
       right: 2rem;
       top: 50%;
       font-size: 15px !important;
       transform: translateY(-50%);
+
+      @include respond-to($small-phone) {
+        display: none !important;
+      }
+
+      &--mobile {
+        position: static;
+        @include respond-to($small-phone) {
+          font-size: 15px !important;
+          display: block !important;
+          margin-left: auto;
+          margin-right: 1rem;
+          margin-top: 1rem;
+        }
+
+        @include respond-to($phone-only) {
+          display: none !important;
+        }
+      }
     }
   }
 
   &__listlink {
     transition: all 0.5s ease;
     padding-left: 1rem;
+    overflow-wrap: break-word;
 
     &-text {
       color: rgba(255, 255, 255, 0.741) !important;
@@ -138,6 +165,10 @@
     justify-content: center;
     padding-top: 5rem;
 
+    @include respond-to($small-phone) {
+      padding-top: 2rem;
+    }
+
     &-image {
       width: 25rem;
 
@@ -160,6 +191,10 @@
     margin-top: 3rem;
     color: white;
     padding: 3rem 4rem;
+
+    @include respond-to($small-phone) {
+      padding: 3rem 3rem;
+    }
     @include glassMorph(rgba(0, 0, 0, 0.111), 10px, rgba(0, 0, 0, 0.165), 2rem);
     @include shadow-func(0.5rem, 0.3rem, 1rem, 0.1rem, rgba(255, 255, 255, 0.522));
   }
@@ -175,6 +210,15 @@
       // font-size: 5px !important;
       height: 4rem;
       width: 4rem;
+
+      @include respond-to($small-phone) {
+        height: 3rem;
+        width: 3rem;
+      }
+      @include respond-to($phone-only) {
+        height: 3rem;
+        width: 3rem;
+      }
       &-outerdiv {
         display: flex;
         margin-top: 2rem;
