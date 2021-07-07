@@ -13,7 +13,7 @@ function App() {
   // const [currentLink, setCurrentLink] = useState('');
   const [seconds, setSeconds] = useState(5);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [currentLanguage, setCurrentLanguage] = useState('en');
   const [startLoop, setStartLoop] = useState(false);
 
   const icons = [
@@ -178,7 +178,7 @@ function App() {
         <div>
           <section className="homepage__banner">
             <h2> {t('homepage:contract', 'Contract Address')}: 0xc7d43f2b51f44f09fbb8a691a0451e8ffcf36c0a</h2>
-            {/* <Button
+            <Button
               variant="secondary"
               className="homepage__banner-btn"
               onClick={() => {
@@ -192,9 +192,9 @@ function App() {
               }}
             >
               {t('translation:language', '中文')}
-            </Button> */}
+            </Button>
           </section>
-          {/* <Button
+          <Button
             variant="secondary"
             className="homepage__banner-btn--mobile"
             onClick={() => {
@@ -208,7 +208,7 @@ function App() {
             }}
           >
             {t('translation:language', '中文')}
-          </Button> */}
+          </Button>
 
           <Container className="homepage__container">
             {/* <div className="homepage__iframe-outerdiv">
