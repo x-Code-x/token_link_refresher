@@ -57,10 +57,10 @@ function App() {
       linkRef.current = links[0];
       if (newWindowRef.current) {
         // newWindowRef.current.close();
-        // newWindowRef.current.location.replace(links[currentIndex + 1]);
 
         if (startLoop) {
-          newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
+          newWindowRef.current.location.replace(links[currentIndex + 1]);
+          // newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
         }
       }
     }
@@ -79,10 +79,9 @@ function App() {
         setSeconds(10);
         if (newWindowRef.current) {
           // newWindowRef.current.close();
-          newWindowRef.current = window.open(links[currentIndex + 1], 'top', 'width=200, height=100, screenY=200');
+          // newWindowRef.current = window.open(links[currentIndex + 1], 'top', 'width=200, height=100, screenY=200');
+          newWindowRef.current.location.replace(links[currentIndex + 1]);
         }
-
-        // newWindowRef.current.location.replace(links[currentIndex + 1]);
       }
     } else {
       setSeconds(10);
@@ -115,6 +114,7 @@ function App() {
     if (startLoop) {
       setCurrentIndex(0);
       // setCurrentLink(websiteLinks[0]);
+      // newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
       newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
     }
   }, [startLoop]);
