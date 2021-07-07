@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/everrise_link_refresher/static/css/main.610669b9.chunk.css",
-    "main.js": "/everrise_link_refresher/static/js/main.879e5d12.chunk.js",
-    "main.js.map": "/everrise_link_refresher/static/js/main.879e5d12.chunk.js.map",
+    "main.js": "/everrise_link_refresher/static/js/main.81030e09.chunk.js",
+    "main.js.map": "/everrise_link_refresher/static/js/main.81030e09.chunk.js.map",
     "runtime-main.js": "/everrise_link_refresher/static/js/runtime-main.3b21d532.js",
     "runtime-main.js.map": "/everrise_link_refresher/static/js/runtime-main.3b21d532.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/everrise_link_refresher/static/css/2.4c97ca4f.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.4c97ca4f.chunk.css",
     "static/js/2.d74831f4.chunk.js",
     "static/css/main.610669b9.chunk.css",
-    "static/js/main.879e5d12.chunk.js"
+    "static/js/main.81030e09.chunk.js"
   ]
 }
