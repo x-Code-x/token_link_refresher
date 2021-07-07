@@ -24,9 +24,10 @@ body {
   font-size: 1.5rem !important;
   font-family: 'Lato', Helvetica, Arial, Lucida, sans-serif;
 
-  background: linear-gradient(-45deg, #d0821d, #9fc029, #21a392, #3c91e6, #2f4c8a, #0e384d, #052839);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: linear-gradient(-45deg, #d0821d, #21a392, #3c91e6, #2f4c8a, #052839);
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+  // animation: gradient 15s ease infinite;
 
   &::-webkit-scrollbar {
     width: 4px !important ;

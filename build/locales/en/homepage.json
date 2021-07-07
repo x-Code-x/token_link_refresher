@@ -1,0 +1,13 @@
+{
+  "title": "Auto Links Refresher",
+  "footer": "Developed by Community Volunteer",
+  "copyright": "Copyright",
+  "contract": "Contract Address",
+  "linkTitle": "List of links",
+  "action": "View Action",
+  "close": "Close",
+  "link": "Link",
+  "loop": "Start Looping",
+  "stopLoop": "Stop Looping",
+  "popup": "Please make sure to allow pop up windows *"
+}

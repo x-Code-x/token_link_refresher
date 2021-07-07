@@ -11,9 +11,9 @@ function App() {
   // const [showIframe, setShowIframe] = useState(false);
   const [links, setLinks] = useState<string[]>([]);
   // const [currentLink, setCurrentLink] = useState('');
-  const [seconds, setSeconds] = useState(10);
+  const [seconds, setSeconds] = useState(5);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  // const [currentLanguage, setCurrentLanguage] = useState('en');
   const [startLoop, setStartLoop] = useState(false);
 
   const icons = [
@@ -59,7 +59,7 @@ function App() {
         // newWindowRef.current.close();
 
         if (startLoop) {
-          newWindowRef.current.location.replace(links[currentIndex + 1]);
+          newWindowRef.current.location.replace(links[0]);
           // newWindowRef.current = window.open(websiteLinks[0], 'top', 'width=200, height=100, screenY=200');
         }
       }
@@ -76,7 +76,7 @@ function App() {
         setCurrentIndex(currentIndex + 1);
         linkRef.current = links[currentIndex + 1];
         // setCurrentLink(links[currentIndex + 1]);
-        setSeconds(10);
+        setSeconds(5);
         if (newWindowRef.current) {
           // newWindowRef.current.close();
           // newWindowRef.current = window.open(links[currentIndex + 1], 'top', 'width=200, height=100, screenY=200');
@@ -84,7 +84,7 @@ function App() {
         }
       }
     } else {
-      setSeconds(10);
+      setSeconds(5);
       setCurrentIndex(0);
       // if (newWindowRef.current) {
       //   newWindowRef.current.close();
@@ -178,7 +178,7 @@ function App() {
         <div>
           <section className="homepage__banner">
             <h2> {t('homepage:contract', 'Contract Address')}: 0xc7d43f2b51f44f09fbb8a691a0451e8ffcf36c0a</h2>
-            <Button
+            {/* <Button
               variant="secondary"
               className="homepage__banner-btn"
               onClick={() => {
@@ -192,9 +192,9 @@ function App() {
               }}
             >
               {t('translation:language', '中文')}
-            </Button>
+            </Button> */}
           </section>
-          <Button
+          {/* <Button
             variant="secondary"
             className="homepage__banner-btn--mobile"
             onClick={() => {
@@ -208,7 +208,7 @@ function App() {
             }}
           >
             {t('translation:language', '中文')}
-          </Button>
+          </Button> */}
 
           <Container className="homepage__container">
             {/* <div className="homepage__iframe-outerdiv">

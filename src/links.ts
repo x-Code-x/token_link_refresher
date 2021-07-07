@@ -8,10 +8,8 @@ export const websiteLinks = [
   'https://www.google.com/search?q=WWW.EVERRISECOIN.COM',
   'https://www.google.com/search?q=everrisecoin',
   'https://www.google.com/search?q=everrise',
-  'https://twitter.com/EverRiseToken',
   'https://www.youtube.com/results?search_query=everrise+token',
   'https://www.youtube.com/results?search_query=buy+everrise+token',
   'https://www.rugfreecoins.com/details/795',
   'https://www.certik.org/projects/everrise',
-  'https://coinsniper.net/coin/3673?__cf_chl_jschl_tk__=1b9fce9b1461c3313290df282b1b4c0f4f53d5ca-1625591525-0-AeVEvHhoCI76BqSpA0GdoBNZB_4YgGnJwU5FyFAs93EyDPbBrL2dPDnDVlvGtDe05YIlzjhBtZe1nfJW-EN-1jS68wLYS8-8G8XTgLGZTNt9s17GiArW-mfSXHbsHTqWGpWzjoSN2ek_qYUl2RNATgU2AlhrF61UyjCmhAItt6Nc6GmyYJaMYP30Tccwu8V3KTyHcmZFDBuU8zjcLotJL4zY4qWk5IAnvzowooIIiHo9u5PdOcaHDV0wDtJ9oPlgniJYtZ7_lGStUa4qJLOSvUMAKEhmlk5dEPUxLdyFmZjxqaAhsrwEVf4U9IqErLD9bPz-_E_Mj5bKbJyEW99yX9dzBj8a-gOaj0zbzwPioJ4eU5SJX0Qw-cC7UTBY3ow-ds7BFlnomFBuFoNRz8i0NgY',
 ];
